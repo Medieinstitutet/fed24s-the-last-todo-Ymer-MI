@@ -1,4 +1,4 @@
-import { v4 as UUID } from 'uuid'
+import { v4 as UUID, validate } from 'uuid'
 
 export class Task {
     private id: string
@@ -12,4 +12,14 @@ export class Task {
     }
 
     getId = () => this.id
+
+    setID = (s: string) => {
+        if (validate(s)) {
+            this.id = s
+        } else if ([undefined, null, ''].includes(this.id)) {
+            this.id = UUID()
+        }
+        
+        return this
+    }
 }
