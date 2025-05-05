@@ -7,6 +7,6 @@ export const taskStorage = {
     get: () => {
         const lsStr = localStorage.getItem(TASK_STORAGE_KEY)
 
-        return !lsStr ? undefined : (JSON.parse(lsStr) as Task[]).map(t => new Task(t.name, t.done).setID(t.getId()))
+        return !lsStr ? undefined : (JSON.parse(lsStr) as Task[]).map(t => new Task(t.name, t.done).setID(t.id))
     } 
 }
