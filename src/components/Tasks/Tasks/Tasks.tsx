@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Task } from '../../../models/Task'
 import { taskStorage } from '../../../helpers/taskStorage'
 import TasksList, { ListObject } from '../TaskList/TasksList'
@@ -12,7 +12,7 @@ export default () => {
         new Task('Add styling using bootstrap', 3),
         new Task('Extra: display completed tasks', 1),
         new Task('Extra: unmark completed task', 2)
-    ]), [sortOrder, setSortOrder] = useState('name'), {completed, uncompleted} = (() => {
+    ]), [sortOrder, setSortOrder] = useState<keyof Task>('name'), {completed, uncompleted} = (() => {
         const r = {
             completed: [] as ListObject[],
             uncompleted: [] as ListObject[]
@@ -26,10 +26,10 @@ export default () => {
 
         setTasks(newTasks)
         taskStorage.save(newTasks)
-    }, sortTasks = () => {
+    }, sortTasks = (s = sortOrder) => {
         const newTasks = [...tasks]
-                    
-        newTasks.sort((a, b) => sortOrder === 'name' ?  a.name.localeCompare(b.name) : a.prio - b.prio)
+
+        newTasks.sort((a, b) => `${a[sortOrder]}`.localeCompare(`${b[sortOrder]}`))
         
         setTasks(newTasks)
         taskStorage.save(newTasks)
@@ -41,14 +41,17 @@ export default () => {
         taskStorage.save(newTasks)
     }
 
+    useEffect(() => {
+        sortTasks()
+    }, [sortOrder])
+
     return <section id='page-tasks'>
         <TaskForm addTask={addTask} />
         <div id='task-lists'>
             <section id='sorting-container'>
                 <label htmlFor="sort">Sort on:</label>
                 <select id='sort' className='form-select' value={sortOrder} onChange={e => {
-                    (() => {setSortOrder(e.target.value)})()
-                    sortTasks()
+                    setSortOrder(e.target.value as keyof Task)
                 }}>
                     <option value='name'>Name</option>
                     <option value='prio'>Priority</option>
