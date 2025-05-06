@@ -1,5 +1,10 @@
-import { ListObject } from '../../models/ListObject'
+import { Task } from '../../models/Task'
 import TaskItem from './TaskItem'
+
+export type ListObject = {
+    i: number
+    t: Task
+}
 
 type ListProps = {
     tasks: ListObject[]

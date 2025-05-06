@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { Task } from '../../models/Task';
 import { taskStorage } from '../../helpers/taskStorage';
-import TasksList from './TasksList';
-import { ListObject } from '../../models/ListObject';
+import TasksList, { ListObject } from './TasksList';
+
+
 
 export default () => {
     const [tasks, setTasks] = useState(taskStorage.get() ?? [
