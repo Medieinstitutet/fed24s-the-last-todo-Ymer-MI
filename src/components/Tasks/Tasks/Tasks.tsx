@@ -26,7 +26,7 @@ export default () => {
 
         setTasks(newTasks)
         taskStorage.save(newTasks)
-    }, sortTasks = (s = sortOrder) => {
+    }, sortTasks = () => {
         const newTasks = [...tasks]
 
         newTasks.sort((a, b) => `${a[sortOrder]}`.localeCompare(`${b[sortOrder]}`))
