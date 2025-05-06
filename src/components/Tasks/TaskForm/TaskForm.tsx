@@ -22,12 +22,15 @@ export default ({addTask}: TaskFormProps) => {
     }
 
     return <form id='new-task' className='row needs-validation' noValidate onSubmit={(e) => {
+        const validationClass = 'was-validated'
+
         e.preventDefault()
-        e.currentTarget.classList.add('was-validated')
+        e.currentTarget.classList.add(validationClass)
 
         if (task.name !== '') {
             addTask(task)
             setTask(Task.getDefaultTask())
+            e.currentTarget.classList.remove(validationClass)
         }
     }}>
         <section>

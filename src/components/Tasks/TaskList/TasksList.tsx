@@ -1,4 +1,4 @@
-import { Task } from '../../models/Task'
+import { Task } from '../../../models/Task'
 import TaskItem from './TaskItem'
 
 export type ListObject = {
@@ -11,6 +11,6 @@ type ListProps = {
     updtFn: (i: number) => void
 }
 
-export default ({tasks, updtFn}: ListProps) => <ul>
+export default ({tasks, updtFn}: ListProps) => <ul className='row justify-content-center'>
         { tasks.map(lo => <TaskItem key={lo.t.getID()} task={lo.t} updtFn={updtFn} i={lo.i} />) }
     </ul>

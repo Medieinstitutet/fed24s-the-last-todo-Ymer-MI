@@ -1,4 +1,4 @@
-import Tasks from '../Tasks/Tasks'
+import Tasks from '../Tasks/Tasks/Tasks'
 
 export default () => {
 

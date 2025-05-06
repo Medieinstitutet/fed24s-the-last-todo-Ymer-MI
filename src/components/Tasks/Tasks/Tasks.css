@@ -1,0 +1,18 @@
+#task-lists {
+    margin-top: 1em;
+
+    section[class*='col'] {
+        padding: 1em;
+    }
+
+    #sorting-container {
+        display: flex;
+        justify-content: end;
+        gap: 1em;
+        align-items: center;
+    }
+
+    .form-select {
+        width: fit-content;
+    }
+}
