@@ -1,0 +1,19 @@
+#new-task {
+    justify-content: center;
+
+    &.was-validated {
+        .valid-feedback, .invalid-feedback {
+            display: block;
+        }
+    }
+
+    section {
+        width: fit-content;
+        text-align: left;
+    }
+
+    .input-group-btn .btn {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}

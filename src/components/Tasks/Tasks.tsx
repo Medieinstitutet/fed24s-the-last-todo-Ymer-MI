@@ -2,9 +2,7 @@ import { useState } from 'react'
 import { Task } from '../../models/Task';
 import { taskStorage } from '../../helpers/taskStorage';
 import TasksList, { ListObject } from './TasksList';
-import TaskForm from './TaskForm';
-
-
+import TaskForm from './TaskForm/TaskForm';
 
 export default () => {
     const [tasks, setTasks] = useState(taskStorage.get() ?? [
@@ -37,11 +35,15 @@ export default () => {
         taskStorage.save(newTasks)
     }
 
-    return <>
+    return <section id='page-tasks'>
         <TaskForm addTask={addTask} />
-        <h1>ToDo:</h1>
-        <TasksList tasks={uncompleted} updtFn={updateDone} />
-        <h2>Completed:</h2>
-        <TasksList tasks={completed} updtFn={updateDone} />
-    </>
+        <section>
+            <h1>ToDo:</h1>
+            <TasksList tasks={uncompleted} updtFn={updateDone} />
+        </section>
+        <section>
+            <h2>Completed:</h2>
+            <TasksList tasks={completed} updtFn={updateDone} />
+        </section>
+    </section>
 }

@@ -12,5 +12,5 @@ type ListProps = {
 }
 
 export default ({tasks, updtFn}: ListProps) => <ul>
-        { tasks.map(lo => <TaskItem key={lo.t.getId()} task={lo.t} updtFn={updtFn} i={lo.i} />) }
+        { tasks.map(lo => <TaskItem key={lo.t.getID()} task={lo.t} updtFn={updtFn} i={lo.i} />) }
     </ul>
