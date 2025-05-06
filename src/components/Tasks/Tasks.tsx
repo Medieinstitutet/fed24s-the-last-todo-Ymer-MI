@@ -2,16 +2,17 @@ import { useState } from 'react'
 import { Task } from '../../models/Task';
 import { taskStorage } from '../../helpers/taskStorage';
 import TasksList, { ListObject } from './TasksList';
+import TaskForm from './TaskForm';
 
 
 
 export default () => {
     const [tasks, setTasks] = useState(taskStorage.get() ?? [
-        new Task('Create list object'),
-        new Task('Iterate list to display in browser'),
-        new Task('Add styling using bootstrap'),
-        new Task('Extra: display completed tasks'),
-        new Task('Extra: unmark completed task')
+        new Task('Create list object', 1),
+        new Task('Iterate list to display in browser', 2),
+        new Task('Add styling using bootstrap', 3),
+        new Task('Extra: display completed tasks', 1),
+        new Task('Extra: unmark completed task', 2)
     ]), {completed, uncompleted} = (() => {
         const r = {
             completed: [] as ListObject[],
@@ -21,16 +22,23 @@ export default () => {
         tasks.forEach((t, i) => { !t.done ? r.uncompleted.push({i, t}) : r.completed.push({i, t}) });
 
         return r
-    })()
+    })(), addTask = (t: Task) => {
+        const newTasks = [...tasks, t]
 
-    const updateDone = (i: number) => {
+        setTasks(newTasks)
+        taskStorage.save(newTasks)
+    }, sortTasks = (s: string) => {
+
+    }, updateDone = (i: number) => {
         const newTasks = [...tasks]
+        
         newTasks[i].done = !newTasks[i].done
         setTasks(newTasks)
         taskStorage.save(newTasks)
     }
 
     return <>
+        <TaskForm addTask={addTask} />
         <h1>ToDo:</h1>
         <TasksList tasks={uncompleted} updtFn={updateDone} />
         <h2>Completed:</h2>

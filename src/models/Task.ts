@@ -1,15 +1,16 @@
 import { v4 as UUID, validate } from 'uuid'
 
 export class Task {
-    private id: string
-    name: string
-    done: boolean
-
-    constructor(name: string, done = false) {
-        this.id = UUID()
-        this.name = name
-        this.done = done
+    private id = UUID()
+    static readonly PRIORITY_LEVELS = {
+        LOW: 1,
+        MEDIUM: 2,
+        HIGH: 3
     }
+
+    constructor(public name: string, public prio = Task.PRIORITY_LEVELS.LOW, public done = false) {}
+
+    getPriorityLevels = () => Object.values(Task.PRIORITY_LEVELS)
 
     getId = () => this.id
 
@@ -22,4 +23,6 @@ export class Task {
         
         return this
     }
+
+    static getDefaultTask = () => new Task('')
 }
