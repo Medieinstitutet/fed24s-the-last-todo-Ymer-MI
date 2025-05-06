@@ -17,9 +17,6 @@ export default ({addTask}: TaskFormProps) => {
                 newTask.name = value
         }
 
-        console.log(newTask)
-        
-
         setTask(newTask)
     }
 
