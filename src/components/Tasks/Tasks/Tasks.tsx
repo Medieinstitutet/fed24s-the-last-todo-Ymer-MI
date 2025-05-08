@@ -39,6 +39,12 @@ export default () => {
         newTasks[i].done = !newTasks[i].done
         setTasks(newTasks)
         taskStorage.save(newTasks)
+    }, removeTask = (i: number) => {
+        const newTasks = [...tasks]
+
+        newTasks.splice(i, 1)
+        setTasks(newTasks)
+        taskStorage.save(newTasks)
     }
 
     useEffect(() => {
@@ -60,11 +66,11 @@ export default () => {
             </section>
             <section className='d-inline-block col-md-6'>
                 <h1>ToDo:</h1>
-                <TasksList tasks={uncompleted} updtFn={updateDone} />
+                <TasksList tasks={uncompleted} updtFn={updateDone} rmFn={removeTask} />
             </section>
             <section className='d-inline-block col-md-6'>
                 <h2>Completed:</h2>
-                <TasksList tasks={completed} updtFn={updateDone} />
+                <TasksList tasks={completed} updtFn={updateDone} rmFn={removeTask}/>
             </section>
         </div>
     </section>

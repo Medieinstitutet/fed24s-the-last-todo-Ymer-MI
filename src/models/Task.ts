@@ -11,9 +11,9 @@ export type TaskType =  ITask & { id: string }
 export class Task implements ITask {
     private id = UUID()
     static readonly PRIORITY_LEVELS = {
-        LOW: 1,
+        HIGH: 1,
         MEDIUM: 2,
-        HIGH: 3
+        LOW: 3
     }
 
     constructor(public name: string, public prio = Task.PRIORITY_LEVELS.LOW, public done = false) {}
