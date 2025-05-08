@@ -55,7 +55,7 @@ export default () => {
         <TaskForm addTask={addTask} />
         <div id='task-lists'>
             <section id='sorting-container'>
-                <label htmlFor="sort">Sort on:</label>
+                <label htmlFor="sort">Sort by:</label>
                 <select id='sort' className='form-select' value={sortOrder} onChange={e => {
                     setSortOrder(e.target.value as keyof Task)
                 }}>
